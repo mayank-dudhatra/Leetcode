@@ -4,21 +4,20 @@ public:
         unordered_set<int> s1 (nums1.begin(), nums1.end());
         unordered_set<int> s2 (nums2.begin(), nums2.end());
 
-        vector<int> a;
-        vector<int> b;
+       vector<vector<int>> result(2);
 
         for(int  x : s1){
-            if(!s2.count(x)){
-                a.push_back(x);
+            if (s2.find(x) == s2.end()) {
+                result[0].push_back(x);
             }
         }
 
-        for(int z : s2){
-            if(!s1.count(z)){
-                b.push_back(z);
+        for(int x : s2){
+           if (s1.find(x) == s1.end()) {
+                result[1].push_back(x);
             }
         }
 
-        return {a,b};
+        return result;
     }
 };
