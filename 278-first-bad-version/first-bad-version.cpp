@@ -1,20 +1,16 @@
 class Solution {
 public:
     int firstBadVersion(int n) {
-        int low = 1, high = n;
-        int ans = n;
+        int left = 1, right = n;
+        
 
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
 
-            if (isBadVersion(mid)) {
-                ans = mid;        
-                high = mid - 1;  
-            } else {
-                low = mid + 1;   
-            }
+            if (isBadVersion(mid)) right = mid;
+            else left = mid+1;
         }
 
-        return ans;
+        return left;
     }
 };
