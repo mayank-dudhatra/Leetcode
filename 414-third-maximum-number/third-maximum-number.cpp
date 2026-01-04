@@ -1,14 +1,26 @@
 class Solution {
 public:
     int thirdMax(vector<int>& nums) {
-        set<int> s(nums.begin(), nums.end());
+        long long first = LLONG_MIN;
+        long long second = LLONG_MIN;
+        long long third = LLONG_MIN;
 
-        if(s.size() < 3) return *s.rbegin();
+        for(int n : nums) {
+            if(n==first || n==second || n==third) continue;
 
-        auto it = s.end();
-        it--;
-        it--;
-        it--;
-        return *it;
+            if(n>first) {
+                third = second;
+                second = first;
+                first = n;
+            }
+            else if (n>second) {
+                third = second;
+                second = n;
+            }
+            else if(n>third){
+                third = n;
+            }
+        }
+        return (third==LLONG_MIN) ? first : third;
     }
 };
