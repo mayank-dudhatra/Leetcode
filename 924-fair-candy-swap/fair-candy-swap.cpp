@@ -1,8 +1,10 @@
 class Solution {
 public:
     vector<int> fairCandySwap(vector<int>& aliceSizes, vector<int>& bobSizes) {
-        int sum1 = accumulate(aliceSizes.begin(), aliceSizes.end(), 0);
-        int sum2 = accumulate(bobSizes.begin(), bobSizes.end(), 0);
+        int sum1 = 0, sum2 = 0;
+        
+        for (int x : aliceSizes) sum1 += x;
+        for (int y : bobSizes) sum2 += y;
 
         for (int a : aliceSizes) {
             for (int b : bobSizes) {
