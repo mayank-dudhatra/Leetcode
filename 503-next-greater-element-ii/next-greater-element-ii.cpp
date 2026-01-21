@@ -2,22 +2,17 @@ class Solution {
 public:
     vector<int> nextGreaterElements(vector<int>& nums) {
         int n = nums.size();
-        vector<int> ans(n, -1);
-        stack<int> st;
+        vector<int> res(n,-1);
 
-        for (int i = 0; i < 2 * n; i++) {
-            int curr = nums[i % n];
-
-            while (!st.empty() && nums[st.top()] < curr) {
-                ans[st.top()] = curr;
-                st.pop();
-            }
-
-            if (i < n) {
-                st.push(i);
+        for(int i=0;i<n;i++){
+            for(int step = 1; step < n; step++){
+                int idx = (i + step) % n;
+                if(nums[idx] > nums[i]){
+                    res[i] = nums[idx];
+                    break;
+                }
             }
         }
-
-        return ans;
+        return res;
     }
 };
