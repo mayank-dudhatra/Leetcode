@@ -1,30 +1,26 @@
 class Solution {
 public:
-    vector<vector<int>> result;
 
-    void generate(int idx, int k, vector<int>& nums, vector<int>& current) {
+    void backtrack(int index, vector<int>& nums, vector<int>& current, vector<vector<int>>& ans) {
         
-        if (current.size() == k) {
-            result.push_back(current);
-            return;
-        }
+        ans.push_back(current);
 
-        for (int i = idx; i < nums.size(); i++) {
+        for(int i = index; i < nums.size(); i++) {
+            
             current.push_back(nums[i]);
-            generate(i + 1, k, nums, current);
-            current.pop_back(); 
+
+            backtrack(i + 1, nums, current, ans);
+
+            current.pop_back();
         }
     }
 
     vector<vector<int>> subsets(vector<int>& nums) {
-        int n = nums.size();
-        result.push_back({}); 
+        vector<vector<int>> ans;
+        vector<int> current;
 
-        for (int k = 1; k <= n; k++) {
-            vector<int> current;
-            generate(0, k, nums, current);
-        }
+        backtrack(0, nums, current, ans);
 
-        return result;
+        return ans;
     }
 };
