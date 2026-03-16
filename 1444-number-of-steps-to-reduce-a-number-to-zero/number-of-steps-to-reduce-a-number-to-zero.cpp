@@ -1,20 +1,19 @@
 class Solution {
 public:
-    
-    int numberOfSteps(int num) {
 
-        int count = 0;
+    int dividen(int n ){
+        if(n == 0) return 0;
 
-        while(num>0){
-            if(num%2==0){
-                num /= 2;
-                count++;
-            } else {
-                num--;
-                count++;
-            }
+        if(n%2==0){
+            return 1+dividen(n/2);
+        } 
+        else {
+            return 1+dividen(n-1);
         }
 
-        return count;
+    }
+    
+    int numberOfSteps(int num) {
+        return dividen(num);
     }
 };
