@@ -1,15 +1,22 @@
 class Solution {
 public:
     bool isPalindrome(string s) {
-        string result = "";
+        int left = 0;
+        int right = s.size()-1;
 
-        for(char c : s){
-            if(isalnum(c)) result+=tolower(c);
+        while(left < right){
+            if(!isalnum(s[left])) left++;
+
+            else if(!isalnum(s[right])) right--;
+
+            else if( tolower(s[left]) != tolower(s[right]) ) return false;
+
+            else {
+                left++;
+                right--;
+            }
         }
 
-        string rev = result;
-        reverse(rev.begin(), rev.end());
-
-        return result == rev;
+        return true;
     }
 };
