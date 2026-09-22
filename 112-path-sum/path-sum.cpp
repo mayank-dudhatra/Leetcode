@@ -18,7 +18,7 @@ public:
 
     currentSum += root->val;
 
-    if (root->left == NULL && root->right == NULL) {
+    if (root->left == nullptr && root->right == nullptr) {
         return currentSum == targetSum;
     }
 
